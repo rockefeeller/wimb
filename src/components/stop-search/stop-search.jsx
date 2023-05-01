@@ -14,6 +14,7 @@ const StopSearch = () => {
   const [stopNumber, setStopNumber] = useState("");
   const [accessToken, setAccessToken] = useState(null);
   const [stopData, setStopData] = useState(null);
+  const [showStopDataComp, setshowStopDataComp] = useState(false);
 
   const fetchLogin = async () => {
     const { accessToken } = await login();
@@ -23,15 +24,16 @@ const StopSearch = () => {
   const handleOnClick = async () => {
     const data = await getTimeArrival(2020, accessToken);
     setStopData(data["Arrive"]);
+    setshowStopDataComp(true);
   };
 
   useEffect(() => {
     try {
       fetchLogin();
-    }catch(e){
-      console.log(e)
-    }finally {
-      setIsLoading(false)
+    } catch (e) {
+      console.log(e);
+    } finally {
+      setIsLoading(false);
     }
   }, [!isLoading]);
 
@@ -55,8 +57,7 @@ const StopSearch = () => {
               Search
             </Button>
           </FormControl>
-          <StopInfo stopData={stopData} />
-          <Advisor/>
+          {showStopDataComp ? <StopInfo stopData={stopData} /> : <Advisor />}
         </>
       )}
     </>
