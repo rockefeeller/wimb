@@ -1,11 +1,14 @@
 import logo from './logo.svg';
 import './App.css';
-import StopInfo from './components/stop-info/stop-info';
+import StopSearch from './components/stop-search/stop-search';
+import { Container } from '@mui/material';
 
 function App() {
   return (
     <div className="App">
-      <StopInfo/>
+      <Container>
+        <StopSearch/>
+      </Container>
     </div>
   );
 }
