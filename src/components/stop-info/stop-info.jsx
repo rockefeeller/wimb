@@ -5,8 +5,8 @@ export default class StopInfo extends Component {
   render() {
     return (
       <>
-        {this.props.stopData !== null
-          ? this.props.stopData.forEach((arrive) => {
+        {
+          this.props.stopData.forEach((arrive) => {
             console.log(arrive)
               console.log(
                 `${parseFloat(arrive.estimateArrive / 60).toFixed(
@@ -15,7 +15,7 @@ export default class StopInfo extends Component {
               );
               <LineItem data={arrive} />;
             })
-          : ""}
+        }
       </>
     );
   }
