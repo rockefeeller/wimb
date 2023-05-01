@@ -1,9 +1,17 @@
-import React from 'react'
+import { Component } from "react";
+import LineItem from "../line-item/line-item";
 
-const StopInfo = () => {
-  return (
-    <div>Stop Info</div>
-  )
+
+export default class StopInfo extends Component {
+    render() {
+        return (
+            <>
+              {this.props.stopData.forEach((arrive) => {
+                console.log(arrive);
+                <LineItem data={arrive} />;
+              })}
+            </>
+          )
+    }
 }
 
-export default StopInfo
