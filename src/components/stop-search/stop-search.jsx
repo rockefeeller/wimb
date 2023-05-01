@@ -7,9 +7,10 @@ import {
 import React, { useEffect, useState } from "react";
 import { getTimeArrival, login } from "../../utils/apiCalls";
 import StopInfo from "../stop-info/stop-info";
+import { Advisor } from "../advisor/advisor";
 
 const StopSearch = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [stopNumber, setStopNumber] = useState("");
   const [accessToken, setAccessToken] = useState(null);
   const [stopData, setStopData] = useState(null);
@@ -25,8 +26,14 @@ const StopSearch = () => {
   };
 
   useEffect(() => {
-    fetchLogin();
-  }, isLoading);
+    try {
+      fetchLogin();
+    }catch(e){
+      console.log(e)
+    }finally {
+      setIsLoading(false)
+    }
+  }, [!isLoading]);
 
   return (
     <>
@@ -49,6 +56,7 @@ const StopSearch = () => {
             </Button>
           </FormControl>
           <StopInfo stopData={stopData} />
+          <Advisor/>
         </>
       )}
     </>
