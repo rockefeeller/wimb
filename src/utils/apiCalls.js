@@ -29,5 +29,5 @@ export const getTimeArrival = async (stopNumber, accessToken) => {
                'Content-Type': 'application/json'
             },
         })
-    return response.data[0]
+    return response.data
 }
