@@ -6,8 +6,8 @@ import {
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { getTimeArrival, login } from "../../utils/apiCalls";
-import StopInfo from "../stop-info/stop-info";
 import { Advisor } from "../advisor/advisor";
+import StopInfo from "../stop-info/stop-info";
 
 const StopSearch = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -22,8 +22,8 @@ const StopSearch = () => {
   };
 
   const handleOnClick = async () => {
-    const data = await getTimeArrival(2020, accessToken);
-    setStopData(data["Arrive"]);
+    const data = await getTimeArrival(stopNumber, accessToken);
+    setStopData(data);
     setshowStopDataComp(true);
   };
 
@@ -50,8 +50,9 @@ const StopSearch = () => {
               variant="outlined"
               inputProps={{
                 inputMode: "numeric",
-                patter: "[0-9]*",
+                pattern: "[0-9]*",
               }}
+              onChange={(evt) => setStopNumber(evt.target.value)}
             />
             <Button variant="contained" onClick={handleOnClick}>
               Search
