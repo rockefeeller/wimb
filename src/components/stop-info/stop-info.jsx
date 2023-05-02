@@ -1,22 +1,8 @@
-import { Component } from "react";
-import LineItem from "../line-item/line-item";
+import { useState } from "react";
+import LineList from "../line-list/line-list";
 
-export default class StopInfo extends Component {
-  render() {
-    return (
-      <>
-        {
-          this.props.stopData.forEach((arrive) => {
-            console.log(arrive)
-              console.log(
-                `${parseFloat(arrive.estimateArrive / 60).toFixed(
-                  0
-                )} minutes to arrive!`
-              );
-              <LineItem data={arrive} />;
-            })
-        }
-      </>
-    );
-  }
-}
+const StopInfo = ({ stopData }) => {
+  return stopData.map((stop) => <LineList arrives={stop["Arrive"]} />);
+};
+
+export default StopInfo;
