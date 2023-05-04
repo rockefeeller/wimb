@@ -10,14 +10,13 @@ const ArriveItem = ({ arrive }) => {
           <DirectionsBusIcon />
           {arrive.line}
         </Typography>
-        <Typography>Stop: {arrive.stop}</Typography>
-        <Typography>
-          <AddLocationIcon />
-          {arrive.destination}
-        </Typography>
         <Typography>
           <AccessTimeIcon />
           {parseFloat(arrive.estimateArrive / 60).toFixed(0)} min
+        </Typography>
+        <Typography>
+          <AddLocationIcon />
+          {arrive.destination}
         </Typography>
       </CardContent>
     </Card>
