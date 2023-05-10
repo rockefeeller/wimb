@@ -3,9 +3,10 @@ import {
   CircularProgress,
   FormControl,
   TextField,
+  styled,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { getTimeArrival, login } from "../../utils/apiCalls";
+import { getStopInfo, getTimeArrival, login } from "../../utils/apiCalls";
 import { Advisor } from "../advisor/advisor";
 import StopInfo from "../stop-info/stop-info";
 
@@ -13,7 +14,7 @@ const StopSearch = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [stopNumber, setStopNumber] = useState("");
   const [accessToken, setAccessToken] = useState(null);
-  const [stopData, setStopData] = useState(null);
+  const [timeArrive, setTimeArrival] = useState(null);
   const [showStopDataComp, setshowStopDataComp] = useState(false);
 
   const fetchLogin = async () => {
@@ -23,7 +24,7 @@ const StopSearch = () => {
 
   const handleOnClick = async () => {
     const data = await getTimeArrival(stopNumber, accessToken);
-    setStopData(data);
+    setTimeArrival(data);
     setshowStopDataComp(true);
   };
 
@@ -36,6 +37,10 @@ const StopSearch = () => {
       setIsLoading(false);
     }
   }, [!isLoading]);
+
+  const ColorButton = styled(Button)({
+    backgroundColor:"#8CC2EC",
+  })
 
   return (
     <>
@@ -54,11 +59,11 @@ const StopSearch = () => {
               }}
               onChange={(evt) => setStopNumber(evt.target.value)}
             />
-            <Button variant="contained" onClick={handleOnClick}>
-              Search
-            </Button>
           </FormControl>
-          {showStopDataComp ? <StopInfo stopData={stopData} /> : <Advisor />}
+          <ColorButton variant="contained" onClick={handleOnClick}>
+              Search
+            </ColorButton>
+          {showStopDataComp ? <StopInfo stopData={timeArrive} /> : <Advisor />}
         </>
       )}
     </>
