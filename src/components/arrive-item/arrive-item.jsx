@@ -21,7 +21,7 @@ const ArriveItem = ({ arrive }) => {
   const BusMove = styled("img")({
     float: 'left',
     width:'100px',
-    animation: `${move} 5s`,
+    animation: `${move} 5s forwards`,
   })
 
   return (
