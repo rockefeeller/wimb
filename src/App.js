@@ -19,21 +19,23 @@ import DirectionsBusIcon from "@mui/icons-material/DirectionsBus";
 import { Link, Route, Router, Routes } from "react-router-dom";
 import MenuComponent from "./components/menu/menu";
 import ArriveItem from "./components/arrive-item/arrive-item";
-import Help from "./components/help/help";
+import Faqs from "./components/faqs/faqs";
 import Home from "./components/home/home";
 
 function App() {
   
 
   return (
+    <>
     <div className="App" style={{alignContent: 'center'}}>
      
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/stopSearch" element={<StopSearch />} />
-        <Route path="/Help" element={<Help />} />
+        <Route path="/Faqs" element={<Faqs />} />
       </Routes>
     </div>
+    </>
   );
 }
 
