@@ -1,8 +1,10 @@
-import { Box, Button, List, ListItem, ListItemButton, ListItemText, SwipeableDrawer } from "@mui/material";
+import { Box, Button, List, ListItem, ListItemButton, ListItemText, SwipeableDrawer, styled } from "@mui/material";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import MenuIcon from '@mui/icons-material/Menu';
 import DirectionsBusIcon from '@mui/icons-material/DirectionsBus';
+import HomeIcon from '@mui/icons-material/Home';
+import HelpIcon from '@mui/icons-material/Help';
 
 const MenuComponent = () => {
 
@@ -22,6 +24,11 @@ const MenuComponent = () => {
     setDraweState({ ...drawerState, [anchor]: open });
   };
 
+  const LinkStyled = styled(Link)({
+    textDecoration: 'none',
+    color: 'blue'
+  })
+
   const list = (anchor) => (
     <Box
       sx={{ width: anchor === "top" || anchor === "bottom" ? "auto" : 250 }}
@@ -30,21 +37,23 @@ const MenuComponent = () => {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {["Home","Where is my bus?","Help"].map((text, index) => (
+        {["Home","Where is my bus?","Faqs"].map((text, index) => (
           <ListItem key={text} disablePadding>
             {text === "Where is my bus?" ? (
               <ListItemButton>
                   <DirectionsBusIcon />
-                  <Link to='/stopSearch'><ListItemText primary={text} /></Link>
+                  <LinkStyled to='/stopSearch'><ListItemText primary={text} /></LinkStyled>
               </ListItemButton>
             ) : text === "Home" ? (
               <ListItemButton>
-                <Link to="/"><ListItemText primary={text} /></Link>
+                <HomeIcon/>
+                <LinkStyled to="/"><ListItemText primary={text} /></LinkStyled>
               </ListItemButton>
             ):
             (
                 <ListItemButton>
-                <Link to={text}><ListItemText primary={text} /></Link>
+                  <HelpIcon />
+                <LinkStyled to={text}><ListItemText primary={text} /></LinkStyled>
               </ListItemButton>
             )
             }
