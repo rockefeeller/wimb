@@ -6,10 +6,12 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { Container } from "@mui/material";
 import MenuComponent from "./components/menu/menu";
+import { Context as ResponsiveContext } from 'react-responsive'
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <BrowserRouter>
+  <ResponsiveContext.Provider value={{width: 500}}>
+    <BrowserRouter>
     <React.StrictMode>
     <MenuComponent />
     <br></br>
@@ -18,6 +20,7 @@ root.render(
       </Container>
     </React.StrictMode>
   </BrowserRouter>
+  </ResponsiveContext.Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function
