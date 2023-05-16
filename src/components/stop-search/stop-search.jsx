@@ -40,10 +40,14 @@ const StopSearch = () => {
 
   const ColorButton = styled(Button)({
     backgroundColor:"#8CC2EC",
+    float: 'right',
+    marginTop: '8px',
+    width: '30%'
   })
 
   return (
     <>
+    <br></br>
       {isLoading ? (
         <CircularProgress />
       ) : (
