@@ -24,6 +24,12 @@ const Faqs = () => {
         "alejandro.gallardo@gmail.com"
       ]}
     />
+    <FaqItem 
+      title={"Do you have any handicap?"}
+      description={[
+        "When you go want to search a estimate bus time, you can use the mic icon to speech the stop number."
+      ]}
+    />
     </>
   );
 };
