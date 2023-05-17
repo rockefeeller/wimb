@@ -27,7 +27,9 @@ const Faqs = () => {
     <FaqItem 
       title={"Do you have any handicap?"}
       description={[
-        "When you go want to search a estimate bus time, you can use the mic icon to speech the stop number."
+        "You can config the app to allow you to search a stop using your own voice.",
+        "Go to \"Config\" on the menu.",
+        "Check the switch if you have some handicap."
       ]}
     />
     </>
