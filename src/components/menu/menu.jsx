@@ -1,14 +1,23 @@
-import { Box, Button, List, ListItem, ListItemButton, ListItemText, SwipeableDrawer, styled } from "@mui/material";
+import {
+  Box,
+  Button,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+  SwipeableDrawer,
+  styled,
+} from "@mui/material";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import MenuIcon from '@mui/icons-material/Menu';
-import DirectionsBusIcon from '@mui/icons-material/DirectionsBus';
-import HomeIcon from '@mui/icons-material/Home';
-import HelpIcon from '@mui/icons-material/Help';
+import MenuIcon from "@mui/icons-material/Menu";
+import DirectionsBusIcon from "@mui/icons-material/DirectionsBus";
+import HomeIcon from "@mui/icons-material/Home";
+import HelpIcon from "@mui/icons-material/Help";
+import SettingsIcon from "@mui/icons-material/Settings";
 
 const MenuComponent = () => {
-
-    const [drawerState, setDraweState] = useState({
+  const [drawerState, setDraweState] = useState({
     left: false,
   });
 
@@ -25,9 +34,9 @@ const MenuComponent = () => {
   };
 
   const LinkStyled = styled(Link)({
-    textDecoration: 'none',
-    color: 'blue'
-  })
+    textDecoration: "none",
+    color: "blue",
+  });
 
   const list = (anchor) => (
     <Box
@@ -37,26 +46,37 @@ const MenuComponent = () => {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {["Home","Where is my bus?","Faqs"].map((text, index) => (
+        {["Home", "Where is my bus?", "Faqs", "Config"].map((text, index) => (
           <ListItem key={text} disablePadding>
             {text === "Where is my bus?" ? (
               <ListItemButton>
-                  <DirectionsBusIcon />
-                  <LinkStyled to='/stopSearch'><ListItemText primary={text} /></LinkStyled>
+                <DirectionsBusIcon />
+                <LinkStyled to="/stopSearch">
+                  <ListItemText primary={text} />
+                </LinkStyled>
               </ListItemButton>
             ) : text === "Home" ? (
               <ListItemButton>
-                <HomeIcon/>
-                <LinkStyled to="/"><ListItemText primary={text} /></LinkStyled>
+                <HomeIcon />
+                <LinkStyled to="/">
+                  <ListItemText primary={text} />
+                </LinkStyled>
               </ListItemButton>
-            ):
-            (
-                <ListItemButton>
-                  <HelpIcon />
-                <LinkStyled to={text}><ListItemText primary={text} /></LinkStyled>
+            ) : text === "Config" ? (
+              <ListItemButton>
+                <SettingsIcon />
+                <LinkStyled to="/Config">
+                  <ListItemText primary={text} />
+                </LinkStyled>
               </ListItemButton>
-            )
-            }
+            ) : (
+              <ListItemButton>
+                <HelpIcon />
+                <LinkStyled to={text}>
+                  <ListItemText primary={text} />
+                </LinkStyled>
+              </ListItemButton>
+            )}
           </ListItem>
         ))}
       </List>
