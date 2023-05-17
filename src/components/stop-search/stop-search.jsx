@@ -9,6 +9,10 @@ import React, { useEffect, useState } from "react";
 import { getStopInfo, getTimeArrival, login } from "../../utils/apiCalls";
 import { Advisor } from "../advisor/advisor";
 import StopInfo from "../stop-info/stop-info";
+import SpeechRecognition, {
+  useSpeechRecognition,
+} from "react-speech-recognition";
+import MicIcon from "@mui/icons-material/Mic";
 
 const StopSearch = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -16,6 +20,14 @@ const StopSearch = () => {
   const [accessToken, setAccessToken] = useState(null);
   const [timeArrive, setTimeArrival] = useState(null);
   const [showStopDataComp, setshowStopDataComp] = useState(false);
+  const [isRecording, setIsRecording] = useState(false);
+
+  const {
+    transcript,
+    listening,
+    resetTranscript,
+    browserSupportsSpeechRecognition,
+  } = useSpeechRecognition();
 
   const fetchLogin = async () => {
     const { accessToken } = await login();
@@ -26,6 +38,18 @@ const StopSearch = () => {
     const data = await getTimeArrival(stopNumber, accessToken);
     setTimeArrival(data);
     setshowStopDataComp(true);
+  };
+
+  const handleSpeechOnClick = async () => {
+    if (!isRecording) {
+      setIsRecording(true);
+      SpeechRecognition.startListening();
+    } else {
+      setIsRecording(false);
+      SpeechRecognition.stopListening();
+      setStopNumber(transcript);
+      resetTranscript();
+    }
   };
 
   useEffect(() => {
@@ -39,15 +63,15 @@ const StopSearch = () => {
   }, [!isLoading]);
 
   const ColorButton = styled(Button)({
-    backgroundColor:"#8CC2EC",
-    float: 'right',
-    marginTop: '8px',
-    width: '30%'
-  })
+    backgroundColor: "#8CC2EC",
+    float: "right",
+    marginTop: "8px",
+    width: "30%",
+  });
 
   return (
     <>
-    <br></br>
+      <br></br>
       {isLoading ? (
         <CircularProgress />
       ) : (
@@ -57,17 +81,29 @@ const StopSearch = () => {
               id="stopNumber"
               label="Stop number"
               variant="outlined"
+              value={stopNumber}
               inputProps={{
                 inputMode: "numeric",
                 pattern: "[0-9]*",
               }}
               onChange={(evt) => setStopNumber(evt.target.value)}
-            />
+            ></TextField>
+            <Button onClick={handleSpeechOnClick} style={{ float: "right" }}>
+              <span>
+                <MicIcon />
+              </span>
+            </Button>
           </FormControl>
           <ColorButton variant="contained" onClick={handleOnClick}>
-              Search
-            </ColorButton>
-          {showStopDataComp ? <StopInfo stopData={timeArrive} /> : <Advisor />}
+            Search
+          </ColorButton>
+          {showStopDataComp && !isRecording ? (
+            <StopInfo stopData={timeArrive} />
+          ) : isRecording ? (
+            <CircularProgress />
+          ) : (
+            <Advisor />
+          )}
         </>
       )}
     </>
