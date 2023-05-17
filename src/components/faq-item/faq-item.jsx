@@ -21,7 +21,7 @@ const FaqItem = ({
             <ul>
             {
                 description.map(
-                    (item) => <li>{item}</li>  
+                    (item) => <><li>{item}</li><br /></> 
                 )
             }
             </ul>
