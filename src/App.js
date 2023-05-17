@@ -21,6 +21,7 @@ import MenuComponent from "./components/menu/menu";
 import ArriveItem from "./components/arrive-item/arrive-item";
 import Faqs from "./components/faqs/faqs";
 import Home from "./components/home/home";
+import Config from "./components/config/config";
 
 function App() {
   
@@ -33,6 +34,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/stopSearch" element={<StopSearch />} />
         <Route path="/Faqs" element={<Faqs />} />
+        <Route path="/Config" element={<Config />} />
       </Routes>
     </div>
     </>
