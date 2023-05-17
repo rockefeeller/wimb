@@ -21,6 +21,9 @@ const StopSearch = () => {
   const [timeArrive, setTimeArrival] = useState(null);
   const [showStopDataComp, setshowStopDataComp] = useState(false);
   const [isRecording, setIsRecording] = useState(false);
+  const [userHasHandicap, setUserHasHandicap] = useState(
+    Boolean(localStorage.getItem("userHasHandicap"))
+  );
 
   const {
     transcript,
@@ -88,11 +91,15 @@ const StopSearch = () => {
               }}
               onChange={(evt) => setStopNumber(evt.target.value)}
             ></TextField>
-            <Button onClick={handleSpeechOnClick} style={{ float: "right" }}>
-              <span>
-                <MicIcon />
-              </span>
-            </Button>
+            {userHasHandicap ? (
+              <Button onClick={handleSpeechOnClick} style={{ float: "right" }}>
+                <span>
+                  <MicIcon />
+                </span>
+              </Button>
+            ) : (
+              ""
+            )}
           </FormControl>
           <ColorButton variant="contained" onClick={handleOnClick}>
             Search
