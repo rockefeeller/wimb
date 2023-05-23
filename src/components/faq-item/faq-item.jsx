@@ -12,7 +12,7 @@ const FaqItem = ({ title, text, description }) => {
         aria-controls="panel1a-content"
         id="panel1a-header"
       >
-        <Typography style={{ color: "blue" }}>{title}</Typography>
+        <Typography style={{ color: "#577eeb" }}>{title}</Typography>
       </AccordionSummary>
       <AccordionDetails>
         <Typography>{text}</Typography>
