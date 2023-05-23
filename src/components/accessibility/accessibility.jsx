@@ -7,10 +7,11 @@ import {
 } from "@mui/material";
 import React from "react";
 import { useEffect, useState } from "react";
+import Title from "../title/title";
 
-const Config = () => {
+const Accessibility = () => {
   const [state, setState] = React.useState({
-    userHasHandicap: Boolean(localStorage.getItem("userHasHandicap")),
+    userHasHandicap: localStorage.getItem('userHasHandicap')
   });
 
   const handleChange = (event) => {
@@ -22,9 +23,8 @@ const Config = () => {
 
   return (
     <>
-      <br />
+      <Title text={"Accesibilidad"} />
       <FormControl>
-        <FormLabel component="legend">App configuration</FormLabel>
         <FormGroup>
           <FormControlLabel
             control={
@@ -34,7 +34,7 @@ const Config = () => {
                 onChange={handleChange}
               />
             }
-            label="Do you have some motor disability?"
+            label="¿Tienes alguna discapacidad motriz?"
           />
         </FormGroup>
       </FormControl>
@@ -42,4 +42,4 @@ const Config = () => {
   );
 };
 
-export default Config;
+export default Accessibility;

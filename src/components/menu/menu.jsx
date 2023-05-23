@@ -15,6 +15,8 @@ import DirectionsBusIcon from "@mui/icons-material/DirectionsBus";
 import HomeIcon from "@mui/icons-material/Home";
 import HelpIcon from "@mui/icons-material/Help";
 import SettingsIcon from "@mui/icons-material/Settings";
+import LabelIcon from '@mui/icons-material/Label';
+import AccessibleIcon from '@mui/icons-material/Accessible';
 
 const MenuComponent = () => {
   const [drawerState, setDraweState] = useState({
@@ -46,7 +48,7 @@ const MenuComponent = () => {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {["Home", "Where is my bus?", "Faqs", "Config"].map((text, index) => (
+        {["Home", "Where is my bus?","Accesibilidad","FAQS","Contacto"].map((text, index) => (
           <ListItem key={text} disablePadding>
             {text === "Where is my bus?" ? (
               <ListItemButton>
@@ -62,16 +64,23 @@ const MenuComponent = () => {
                   <ListItemText primary={text} />
                 </LinkStyled>
               </ListItemButton>
-            ) : text === "Config" ? (
+            ) : text === "Accesibilidad" ? (
               <ListItemButton>
-                <SettingsIcon />
-                <LinkStyled to="/Config">
+                <AccessibleIcon />
+                <LinkStyled to="/Accesibilidad">
+                  <ListItemText primary={text} />
+                </LinkStyled>
+              </ListItemButton>
+            ) :  text === "Help" ? (
+              <ListItemButton>
+                <HelpIcon />
+                <LinkStyled to={text}>
                   <ListItemText primary={text} />
                 </LinkStyled>
               </ListItemButton>
             ) : (
               <ListItemButton>
-                <HelpIcon />
+                <LabelIcon />
                 <LinkStyled to={text}>
                   <ListItemText primary={text} />
                 </LinkStyled>

@@ -13,6 +13,7 @@ import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
 import MicIcon from "@mui/icons-material/Mic";
+import Title from "../title/title";
 
 const StopSearch = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -56,6 +57,11 @@ const StopSearch = () => {
   };
 
   useEffect(() => {
+    setUserHasHandicap(Boolean(localStorage.getItem('userHasHandicap')))
+  },[userHasHandicap])
+  
+
+  useEffect(() => {
     try {
       fetchLogin();
     } catch (e) {
@@ -74,7 +80,7 @@ const StopSearch = () => {
 
   return (
     <>
-      <br></br>
+      <Title text={"Where is my bus?"} />
       {isLoading ? (
         <CircularProgress />
       ) : (
@@ -82,7 +88,7 @@ const StopSearch = () => {
           <FormControl>
             <TextField
               id="stopNumber"
-              label="Stop number"
+              label="Número de parada"
               variant="outlined"
               value={stopNumber}
               inputProps={{
@@ -102,7 +108,7 @@ const StopSearch = () => {
             )}
           </FormControl>
           <ColorButton variant="contained" onClick={handleOnClick}>
-            Search
+            Buscar
           </ColorButton>
           {showStopDataComp && !isRecording ? (
             <StopInfo stopData={timeArrive} />

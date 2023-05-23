@@ -1,37 +1,35 @@
-import ArriveItem from "../arrive-item/arrive-item";
-import Accordion from "@mui/material/Accordion";
-import AccordionSummary from "@mui/material/AccordionSummary";
-import AccordionDetails from "@mui/material/AccordionDetails";
-import Typography from "@mui/material/Typography";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import FaqItem from "../faq-item/faq-item";
+import Title from "../title/title";
 
 const Faqs = () => {
   return (
     <>
-    <br />
-    <FaqItem
-      title={"How can i search a bus info?"}
-      description={[
-        "Go to \"Where is my bus\" section on the menu.",
-        "Introduce in the input the stop number which do you want to search."
-      ]}
-    />
-    <FaqItem 
-      title={"Contact with us"}
-      description={[
-        "Send an email to the following email address.",
-        "alejandro.gallardo@gmail.com"
-      ]}
-    />
-    <FaqItem 
-      title={"Do you have any handicap?"}
-      description={[
-        "You can config the app to allow you to search a stop using your own voice.",
-        "Go to \"Config\" on the menu.",
-        "Check the switch if you have some handicap."
-      ]}
-    />
+      <Title text={"FAQS"} />
+      <FaqItem
+        title={"¿Información de una parada?"}
+        text={
+          "Para buscar la información sobre la parada que deseas has de seguir los siguientes pasos:"
+        }
+        description={[
+          'Dirigete a la sección "Where is my bus" del menú.',
+          "En el campo de texto introduce el número de parada que deseas buscar.",
+          'Pulsa en el botón "Buscar".',
+        ]}
+      />
+      <FaqItem
+        title={"¿Tienes alguna discapacidad?"}
+        text={
+          'Si padeces alguna discapacidad motriz puedes indicarlo en la sección del menu llamada "Accesibilidad", ésto te permitirá realizar las búsquedas utilizando el micrófono de tu dispositivo, ya se móvil, tablet u ordenador.'
+        }
+        description={[]}
+      />
+      <FaqItem
+        title={"¿Cómo contacto con ustedes?"}
+        text={
+          'Para poder contactar con el equipo de soporte, dirigete a menu->Contacto, encontrarás un botón con el texto "Contactar", al pulsarlo se abrirá tu cliente de correo con la dirección de soporte precargada.'
+        }
+        description={[]}
+      />
     </>
   );
 };

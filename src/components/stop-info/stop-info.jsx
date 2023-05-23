@@ -1,8 +1,8 @@
 import { useState } from "react";
-import LineList from "../line-list/line-list";
+import ArriveList from "../arrive-list/arrive-list";
 
 const StopInfo = ({ stopData }) => {
-  return stopData.map((stop) => <LineList arrives={stop["Arrive"]} />);
+  return stopData.map((stop) => <ArriveList arrives={stop["Arrive"]} />);
 };
 
 export default StopInfo;
