@@ -5,7 +5,7 @@ import {
   TextField,
   styled,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { getStopInfo, getTimeArrival, login } from "../../utils/apiCalls";
 import { Advisor } from "../advisor/advisor";
 import StopInfo from "../stop-info/stop-info";
@@ -14,17 +14,18 @@ import SpeechRecognition, {
 } from "react-speech-recognition";
 import MicIcon from "@mui/icons-material/Mic";
 import Title from "../title/title";
+import { AccessibilityContext } from "../../context/AccessibilityContext";
 
 const StopSearch = () => {
+
+  const accesibilityContext = useContext(AccessibilityContext)
+
   const [isLoading, setIsLoading] = useState(true);
   const [stopNumber, setStopNumber] = useState("");
   const [accessToken, setAccessToken] = useState(null);
   const [timeArrive, setTimeArrival] = useState(null);
   const [showStopDataComp, setshowStopDataComp] = useState(false);
   const [isRecording, setIsRecording] = useState(false);
-  const [userHasHandicap, setUserHasHandicap] = useState(
-    Boolean(localStorage.getItem("userHasHandicap"))
-  );
 
   const {
     transcript,
@@ -55,11 +56,6 @@ const StopSearch = () => {
       resetTranscript();
     }
   };
-
-  useEffect(() => {
-    setUserHasHandicap(Boolean(localStorage.getItem('userHasHandicap')))
-  },[userHasHandicap])
-  
 
   useEffect(() => {
     try {
@@ -97,7 +93,7 @@ const StopSearch = () => {
               }}
               onChange={(evt) => setStopNumber(evt.target.value)}
             ></TextField>
-            {userHasHandicap ? (
+            {accesibilityContext.userHasHandicap ? (
               <Button onClick={handleSpeechOnClick} style={{ float: "right" }}>
                 <span>
                   <MicIcon />

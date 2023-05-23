@@ -5,20 +5,33 @@ import {
   FormLabel,
   Switch,
 } from "@mui/material";
-import React from "react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useContext } from "react";
 import Title from "../title/title";
+import { AccessibilityContext } from "../../context/AccessibilityContext";
 
 const Accessibility = () => {
+
+  const accesibilityContext = useContext(AccessibilityContext)
+
   const [state, setState] = React.useState({
-    userHasHandicap: localStorage.getItem('userHasHandicap')
+    userHasHandicap: accesibilityContext.userHasHandicap,
+    userHasVisualHandicap: accesibilityContext.userHasVisualHandicap,
   });
 
   const handleChange = (event) => {
     setState({
-      userHasHandicap: event.target.checked,
+      ...state,
+      [event.target.name]: Boolean(event.target.checked),
     });
-    localStorage.setItem("userHasHandicap", event.target.checked);
+    switch(event.target.name){
+      case "userHasHandicap":
+        accesibilityContext.setUserHasHandicap(Boolean(event.target.checked))
+        break;
+      case "userHasVisualHandicap":
+        accesibilityContext.setUserHasVisualHandicap(Boolean(event.target.checked))
+        break;
+    }
+    console.log(accesibilityContext.userHasVisualHandicap)
   };
 
   return (
@@ -35,6 +48,20 @@ const Accessibility = () => {
               />
             }
             label="¿Tienes alguna discapacidad motriz?"
+          />
+        </FormGroup>
+      </FormControl>
+      <FormControl>
+        <FormGroup>
+          <FormControlLabel
+            control={
+              <Switch
+                checked={state.userHasVisualHandicap}
+                name="userHasVisualHandicap"
+                onChange={handleChange}
+              />
+            }
+            label="¿Tienes alguna discapacidad visual?"
           />
         </FormGroup>
       </FormControl>
