@@ -17,6 +17,7 @@ import HelpIcon from "@mui/icons-material/Help";
 import SettingsIcon from "@mui/icons-material/Settings";
 import LabelIcon from '@mui/icons-material/Label';
 import AccessibleIcon from '@mui/icons-material/Accessible';
+import ContactMailIcon from '@mui/icons-material/ContactMail';
 
 const MenuComponent = () => {
   const [drawerState, setDraweState] = useState({
@@ -37,7 +38,7 @@ const MenuComponent = () => {
 
   const LinkStyled = styled(Link)({
     textDecoration: "none",
-    color: "blue",
+    color: "#577eeb",
   });
 
   const list = (anchor) => (
@@ -74,6 +75,13 @@ const MenuComponent = () => {
             ) :  text === "Help" ? (
               <ListItemButton>
                 <HelpIcon />
+                <LinkStyled to={text}>
+                  <ListItemText primary={text} />
+                </LinkStyled>
+              </ListItemButton>
+            ) : text === "Contacto" ? (
+              <ListItemButton>
+                <ContactMailIcon />
                 <LinkStyled to={text}>
                   <ListItemText primary={text} />
                 </LinkStyled>
