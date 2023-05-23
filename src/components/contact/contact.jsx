@@ -18,7 +18,7 @@ const Contact = () => {
     
       <Title text={"Contacto"} />
       <ColorButton variant="contained">
-        <LinkCustom href="mailto:alejandro.gallardo@cesjuanpablosegundo.es">Contactar</LinkCustom>
+        <LinkCustom href="mailto:alejandro.gallardo@cesjuanpablosegundo.es?subject=Incidencia Wimb">Contactar</LinkCustom>
       </ColorButton>
     </>
   );
