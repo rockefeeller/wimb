@@ -10,8 +10,7 @@ import Title from "../title/title";
 import { AccessibilityContext } from "../../context/AccessibilityContext";
 
 const Accessibility = () => {
-
-  const accesibilityContext = useContext(AccessibilityContext)
+  const accesibilityContext = useContext(AccessibilityContext);
 
   const [state, setState] = React.useState({
     userHasHandicap: accesibilityContext.userHasHandicap,
@@ -23,15 +22,18 @@ const Accessibility = () => {
       ...state,
       [event.target.name]: Boolean(event.target.checked),
     });
-    switch(event.target.name){
+    switch (event.target.name) {
       case "userHasHandicap":
-        accesibilityContext.setUserHasHandicap(Boolean(event.target.checked))
+        accesibilityContext.setUserHasHandicap(Boolean(event.target.checked));
+        localStorage.setItem('userHasHandicap',Boolean(event.target.checked))
         break;
       case "userHasVisualHandicap":
-        accesibilityContext.setUserHasVisualHandicap(Boolean(event.target.checked))
+        accesibilityContext.setUserHasVisualHandicap(
+          Boolean(event.target.checked)
+        );
+        localStorage.setItem('userHasVisualHandicap',Boolean(event.target.checked))
         break;
     }
-    console.log(accesibilityContext.userHasVisualHandicap)
   };
 
   return (
@@ -61,10 +63,28 @@ const Accessibility = () => {
                 onChange={handleChange}
               />
             }
-            label="¿Tienes alguna discapacidad visual?"
+            label="¿Tienes alguna  discapacidad visual?"
           />
         </FormGroup>
       </FormControl>
+      {accesibilityContext.userHasVisualHandicap ? (
+        <>
+          <label for="colorPicker">Color para los títulos </label>
+          <input
+            name="colorPicker"
+            type="color"
+            value={accesibilityContext.titleColor}
+            onChange={(event) => {
+              accesibilityContext.setTitleColor(event.target.value)
+              localStorage.setItem('titleColor',accesibilityContext.titleColor)
+            }
+              
+            }
+          />
+        </>
+      ) : (
+        ""
+      )}
     </>
   );
 };
