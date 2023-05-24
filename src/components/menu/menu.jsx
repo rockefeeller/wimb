@@ -8,7 +8,7 @@ import {
   SwipeableDrawer,
   styled,
 } from "@mui/material";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import DirectionsBusIcon from "@mui/icons-material/DirectionsBus";
@@ -18,11 +18,15 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import LabelIcon from '@mui/icons-material/Label';
 import AccessibleIcon from '@mui/icons-material/Accessible';
 import ContactMailIcon from '@mui/icons-material/ContactMail';
+import Title from "../title/title";
+import { AccessibilityContext } from "../../context/AccessibilityContext";
 
 const MenuComponent = () => {
   const [drawerState, setDraweState] = useState({
     left: false,
   });
+
+  const accesibilityContext = useContext(AccessibilityContext)
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (
@@ -48,10 +52,12 @@ const MenuComponent = () => {
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
-      <List>
-        {["Home", "Where is my bus?","Accesibilidad","FAQS","Contacto"].map((text, index) => (
+      <Title text={"Menu"} />
+      <hr />
+      <List style={{color: accesibilityContext.userHasVisualHandicap ?  accesibilityContext.titleColor : "#577eeb"}}>
+        {["Home", "¿Dónde está mi bus?","Accesibilidad","FAQS","Contacto"].map((text, index) => (
           <ListItem key={text} disablePadding>
-            {text === "Where is my bus?" ? (
+            {text === "¿Dónde está mi bus?" ? (
               <ListItemButton>
                 <DirectionsBusIcon />
                 <LinkStyled to="/stopSearch">
