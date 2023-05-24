@@ -12,7 +12,6 @@ function App() {
   
   return (
     <>
-    <AccessibilityContextProvider>
     <div className="App" style={{alignContent: 'center'}}>
      
       <Routes>
@@ -23,7 +22,6 @@ function App() {
         <Route path="/Contacto" element={<Contact />} />
       </Routes>
     </div>
-    </AccessibilityContextProvider>
     </>
   );
 }

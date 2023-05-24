@@ -7,10 +7,12 @@ import { BrowserRouter } from "react-router-dom";
 import { Container } from "@mui/material";
 import MenuComponent from "./components/menu/menu";
 import { Context as ResponsiveContext } from 'react-responsive'
+import AccessibilityContextProvider from "./context/AccessibilityContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <ResponsiveContext.Provider value={{width: 500}}>
+    <AccessibilityContextProvider>
     <BrowserRouter>
     <React.StrictMode>
     <MenuComponent />
@@ -20,6 +22,7 @@ root.render(
       </Container>
     </React.StrictMode>
   </BrowserRouter>
+  </AccessibilityContextProvider>
   </ResponsiveContext.Provider>
 );
 
