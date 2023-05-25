@@ -14,12 +14,11 @@ import MenuIcon from "@mui/icons-material/Menu";
 import DirectionsBusIcon from "@mui/icons-material/DirectionsBus";
 import HomeIcon from "@mui/icons-material/Home";
 import HelpIcon from "@mui/icons-material/Help";
-import SettingsIcon from "@mui/icons-material/Settings";
 import LabelIcon from '@mui/icons-material/Label';
-import AccessibleIcon from '@mui/icons-material/Accessible';
 import ContactMailIcon from '@mui/icons-material/ContactMail';
 import Title from "../title/title";
 import { AccessibilityContext } from "../../context/AccessibilityContext";
+import AccessibilityIcon from '@mui/icons-material/Accessibility';
 
 const MenuComponent = () => {
   const [drawerState, setDraweState] = useState({
@@ -73,7 +72,7 @@ const MenuComponent = () => {
               </ListItemButton>
             ) : text === "Accesibilidad" ? (
               <ListItemButton>
-                <AccessibleIcon />
+                <AccessibilityIcon />
                 <LinkStyled to="/Accesibilidad">
                   <ListItemText primary={text} />
                 </LinkStyled>
