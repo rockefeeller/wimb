@@ -76,7 +76,7 @@ const StopSearch = () => {
 
   return (
     <>
-      <Title text={"Where is my bus?"} />
+      <Title text={"¿Dónde está mi bus?"} />
       {isLoading ? (
         <CircularProgress />
       ) : (
