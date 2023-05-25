@@ -4,7 +4,7 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
-const FaqItem = ({ title, text, description }) => {
+const FaqItem = ({ title, text, items }) => {
   return (
     <Accordion style={{textAlign: 'justify'}}>
       <AccordionSummary
@@ -17,7 +17,7 @@ const FaqItem = ({ title, text, description }) => {
       <AccordionDetails>
         <Typography>{text}</Typography>
         <ul>
-          {description.map((item) => (
+          {items.map((item) => (
             <>
               <li>{item}</li>
               <br />
