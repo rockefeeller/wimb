@@ -1,4 +1,5 @@
 import {
+  Alert,
   Button,
   CircularProgress,
   FormControl,
@@ -6,8 +7,7 @@ import {
   styled,
 } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
-import { getStopInfo, getTimeArrival, login } from "../../utils/apiCalls";
-import { Advisor } from "../advisor/advisor";
+import { getTimeArrival, login } from "../../utils/apiCalls";
 import StopInfo from "../stop-info/stop-info";
 import SpeechRecognition, {
   useSpeechRecognition,
@@ -111,7 +111,7 @@ const StopSearch = () => {
           ) : isRecording ? (
             <CircularProgress />
           ) : (
-            <Advisor />
+            <Alert severity="info">Por favor, busque una parada!</Alert>
           )}
         </>
       )}
