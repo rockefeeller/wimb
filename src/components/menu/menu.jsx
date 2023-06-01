@@ -60,42 +60,42 @@ const MenuComponent = () => {
               <ListItemButton>
                 <DirectionsBusIcon />
                 <LinkStyled to="/stopSearch">
-                  <ListItemText primary={text} />
+                  <ListItemText primary={text} style={{color: accesibilityContext.userHasVisualHandicap ?  accesibilityContext.titleColor : "#577eeb"}}/>
                 </LinkStyled>
               </ListItemButton>
             ) : text === "Home" ? (
               <ListItemButton>
                 <HomeIcon />
                 <LinkStyled to="/">
-                  <ListItemText primary={text} />
+                  <ListItemText primary={text} style={{color: accesibilityContext.userHasVisualHandicap ?  accesibilityContext.titleColor : "#577eeb"}}/>
                 </LinkStyled>
               </ListItemButton>
             ) : text === "Accesibilidad" ? (
               <ListItemButton>
                 <AccessibilityIcon />
                 <LinkStyled to="/Accesibilidad">
-                  <ListItemText primary={text} />
+                  <ListItemText primary={text} style={{color: accesibilityContext.userHasVisualHandicap ?  accesibilityContext.titleColor : "#577eeb"}}/>
                 </LinkStyled>
               </ListItemButton>
             ) :  text === "Help" ? (
               <ListItemButton>
                 <HelpIcon />
                 <LinkStyled to={text}>
-                  <ListItemText primary={text} />
+                  <ListItemText primary={text} style={{color: accesibilityContext.userHasVisualHandicap ?  accesibilityContext.titleColor : "#577eeb"}}/>
                 </LinkStyled>
               </ListItemButton>
             ) : text === "Contacto" ? (
               <ListItemButton>
                 <ContactMailIcon />
                 <LinkStyled to={text}>
-                  <ListItemText primary={text} />
+                  <ListItemText primary={text} style={{color: accesibilityContext.userHasVisualHandicap ?  accesibilityContext.titleColor : "#577eeb"}}/>
                 </LinkStyled>
               </ListItemButton>
             ) : (
               <ListItemButton>
                 <LabelIcon />
                 <LinkStyled to={text}>
-                  <ListItemText primary={text} />
+                  <ListItemText primary={text} style={{color: accesibilityContext.userHasVisualHandicap ?  accesibilityContext.titleColor : "#577eeb"}}/>
                 </LinkStyled>
               </ListItemButton>
             )}

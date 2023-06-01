@@ -68,7 +68,7 @@ const StopSearch = () => {
   }, [!isLoading]);
 
   const ColorButton = styled(Button)({
-    backgroundColor: "#8CC2EC",
+    backgroundColor: accesibilityContext.userHasVisualHandicap ?  accesibilityContext.titleColor : "#577eeb",
     float: "right",
     marginTop: "8px",
     width: "30%",
@@ -96,7 +96,7 @@ const StopSearch = () => {
             {accesibilityContext.userHasHandicap ? (
               <Button onClick={handleSpeechOnClick} style={{ float: "right" }}>
                 <span>
-                  <MicIcon />
+                  <MicIcon style={{color: accesibilityContext.userHasVisualHandicap ?  accesibilityContext.titleColor : "#577eeb"}}/>
                 </span>
               </Button>
             ) : (
