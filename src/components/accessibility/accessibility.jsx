@@ -25,13 +25,16 @@ const Accessibility = () => {
     switch (event.target.name) {
       case "userHasHandicap":
         accesibilityContext.setUserHasHandicap(Boolean(event.target.checked));
-        localStorage.setItem('userHasHandicap',Boolean(event.target.checked))
+        localStorage.setItem("userHasHandicap", Boolean(event.target.checked));
         break;
       case "userHasVisualHandicap":
         accesibilityContext.setUserHasVisualHandicap(
           Boolean(event.target.checked)
         );
-        localStorage.setItem('userHasVisualHandicap',Boolean(event.target.checked))
+        localStorage.setItem(
+          "userHasVisualHandicap",
+          Boolean(event.target.checked)
+        );
         break;
     }
   };
@@ -39,7 +42,22 @@ const Accessibility = () => {
   return (
     <>
       <Title text={"Accesibilidad"} />
-      <FormControl>
+      <h4
+        style={{
+          color: accesibilityContext.userHasVisualHandicap
+            ? accesibilityContext.titleColor
+            : "#577eeb",
+          float: 'left',
+          display: 'flex',
+          position: 'absolute'
+        }}
+      >
+        Física o motora
+      </h4>
+      <br />
+      <br />
+      <section style={{display: 'flex', flexDirection: 'row'}}>
+      <FormControl >
         <FormGroup>
           <FormControlLabel
             control={
@@ -49,10 +67,26 @@ const Accessibility = () => {
                 onChange={handleChange}
               />
             }
-            label="¿Tienes alguna discapacidad motriz?"
+            label="Búsqueda por voz"
           />
         </FormGroup>
       </FormControl>
+      </section>
+      <h4
+        style={{
+          color: accesibilityContext.userHasVisualHandicap
+            ? accesibilityContext.titleColor
+            : "#577eeb",
+          float: 'left',
+          display: 'flex',
+          position: 'absolute'
+        }}
+      >
+        Visual
+      </h4>
+      <br />
+      <br />
+      <section style={{display: 'flex', flexDirection: 'column'}}>
       <FormControl>
         <FormGroup>
           <FormControlLabel
@@ -63,28 +97,30 @@ const Accessibility = () => {
                 onChange={handleChange}
               />
             }
-            label="¿Tienes alguna  discapacidad visual?"
+            label="Colores"
           />
         </FormGroup>
       </FormControl>
-      {accesibilityContext.userHasVisualHandicap ? (
+      <section style={{display: 'flex', flexDirection: 'row', gap: '10px'}}>
+      {accesibilityContext.userHasVisualHandicap && (
         <>
-          <label for="colorPicker">Color para los títulos </label>
+          <label for="colorPicker">Seleccione el color</label>
           <input
             name="colorPicker"
             type="color"
             value={accesibilityContext.titleColor}
             onChange={(event) => {
-              accesibilityContext.setTitleColor(event.target.value)
-              localStorage.setItem('titleColor',accesibilityContext.titleColor)
-            }
-              
-            }
+              accesibilityContext.setTitleColor(event.target.value);
+              localStorage.setItem(
+                "titleColor",
+                accesibilityContext.titleColor
+              );
+            }}
           />
         </>
-      ) : (
-        ""
       )}
+      </section>
+      </section>
     </>
   );
 };
