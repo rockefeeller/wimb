@@ -20,7 +20,7 @@ const StopSearch = () => {
 
   const accesibilityContext = useContext(AccessibilityContext)
 
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [stopNumber, setStopNumber] = useState("");
   const [accessToken, setAccessToken] = useState(null);
   const [timeArrive, setTimeArrival] = useState(null);
@@ -40,7 +40,9 @@ const StopSearch = () => {
   };
 
   const handleOnClick = async () => {
+    setIsLoading(true)
     const data = await getTimeArrival(stopNumber, accessToken);
+    setIsLoading(false)
     setTimeArrival(data);
     setshowStopDataComp(true);
   };
@@ -62,10 +64,8 @@ const StopSearch = () => {
       fetchLogin();
     } catch (e) {
       console.log(e);
-    } finally {
-      setIsLoading(false);
     }
-  }, [!isLoading]);
+  }, []);
 
   const ColorButton = styled(Button)({
     backgroundColor: accesibilityContext.userHasVisualHandicap ?  accesibilityContext.titleColor : "#577eeb",
@@ -77,9 +77,6 @@ const StopSearch = () => {
   return (
     <>
       <Title text={"¿Dónde está mi bus?"} />
-      {isLoading ? (
-        <CircularProgress />
-      ) : (
         <>
           <FormControl>
             <TextField
@@ -109,12 +106,13 @@ const StopSearch = () => {
           {showStopDataComp && !isRecording ? (
             <StopInfo stopData={timeArrive} />
           ) : isRecording ? (
+            <CircularProgress style={{color: accesibilityContext.userHasVisualHandicap ?  accesibilityContext.titleColor : "#577eeb"}}/>
+          ) : isLoading  ? (
             <CircularProgress />
-          ) : (
+          ): (
             <Alert severity="info">Por favor, busque una parada!</Alert>
           )}
         </>
-      )}
     </>
   );
 };
