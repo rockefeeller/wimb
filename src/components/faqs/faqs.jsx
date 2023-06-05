@@ -24,11 +24,15 @@ const Faqs = () => {
         items={[]}
       />
       <FaqItem
-        title={"¿Tienes alguna discapacidad?"}
+        title={"¿Accesibilidad?"}
         text={
-          'Si padeces alguna discapacidad motriz puedes indicarlo en la sección del menu llamada "Accesibilidad", ésto te permitirá realizar las búsquedas utilizando el micrófono de tu dispositivo, ya se móvil, tablet u ordenador.'
+          'Puedes configurar la aplicación a tus necesidades, llevando a cabo los siguientes pasos:'
         }
-        items={[]}
+        items={[
+          "Pulsa el icono del menú.",
+          "Clica en \"Accesibilidad\".",
+          "Activa las opciones que mejor se adapten a ti."
+        ]}
       />
       <FaqItem
         title={"¿Cómo contactar con nosotros?"}
